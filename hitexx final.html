@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hitexx – Tabela de Serviços</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0c0a;
+    --surface: #1a1612;
+    --card: #211d18;
+    --border: rgba(255,255,255,0.07);
+    --gold: #c9a44a;
+    --gold-light: #e8c87a;
+    --gold-dim: rgba(201,164,74,0.15);
+    --text: #f0ece4;
+    --muted: #8a8278;
+    --accent: #e85d3a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    text-align: center;
+    padding: 80px 24px 60px;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,164,74,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-logo {
+  width: 220px;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto 24px;
+  display: block;
+  opacity: 0.95;
+}
+
+  .hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 8vw, 80px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -1px;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-sub {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 420px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  .divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 32px auto;
+    opacity: 0.5;
+  }
+
+  /* SECTIONS */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .section-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--gold-dim);
+    border: 1px solid rgba(201,164,74,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .section-title small {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+
+  /* CARD GRID */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .service-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .service-card:hover {
+    border-color: rgba(255, 0, 0, 0.35);
+    transform: translateY(-2px);
+  }
+  .card-img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.75) saturate(0.9);
+  }
+  .card-body { padding: 20px; }
+  .card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .card-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  .card-price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .price-pill {
+    background: var(--gold-dim);
+    border: 1px solid rgba(201,164,74,0.25);
+    border-radius: 999px;
+    padding: 5px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gold-light);
+    white-space: nowrap;
+  }
+  .price-label {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* CARD STEPS (kit D'Addario) */
+  .card-steps {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .card-steps li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .card-steps li .step-num {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--gold-dim);
+    border: 1px solid rgba(201,164,74,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--gold);
+    margin-top: 1px;
+  }
+  .card-steps li strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* PRICE TABLE (list items) */
+  .price-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 8px;
+  }
+  .price-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    gap: 12px;
+    transition: border-color 0.2s;
+  }
+  .price-item:hover { border-color: rgba(201,164,74,0.25); }
+  .price-item-name {
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 400;
+  }
+  .price-item-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  /* SETUP COMPARISON */
+  .setup-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 600px) { .setup-grid { grid-template-columns: 1fr; } }
+
+  .setup-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+  }
+  .setup-card.featured {
+    border-color: rgba(201,164,74,0.4);
+    background: linear-gradient(135deg, #221e16 0%, #1a1612 100%);
+  }
+  .setup-badge {
+    display: inline-block;
+    background: var(--gold-dim);
+    border: 1px solid rgba(201,164,74,0.3);
+    border-radius: 999px;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .setup-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .setup-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .setup-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .setup-features li::before {
+    content: '✦';
+    color: var(--gold);
+    font-size: 9px;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  /* INFO BANNER */
+  .info-banner {
+    max-width: 1100px;
+    margin: 0 auto 60px;
+    padding: 0 24px;
+  }
+  .info-inner {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+  }
+  .info-item { display: flex; gap: 14px; align-items: flex-start; }
+  .info-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+  .info-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .info-text strong { color: var(--text); font-weight: 500; }
+
+  /* SEPARATOR */
+  .section-sep {
+    border: none;
+    border-top: 1px solid var(--border);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 40px 24px;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <img class="hero-logo" src="hitexx-logo.png" alt="Hitexx Logo">
+  <p class="hero-eyebrow">Luthieria & Regulagens</p>
+  <h1>Hitexx<br><span>Serviços</span></h1>
+  <p class="hero-sub">Cuidado profissional para seu instrumento. Qualidade e garantia em cada regulagem.</p>
+  <div class="divider"></div>
+</div>
+
+<!-- LIMPEZA -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">🧼</div>
+    <div>
+      <div class="section-title">
+        <small>Conservação</small>
+        Limpeza & Hidratação
+      </div>
+    </div>
+  </div>
+  <div class="card-grid">
+
+    <!-- Card 1: Limpeza Completa -->
+    <div class="service-card">
+      <img class="card-img" src="limpeza.jpg" alt="Escala de guitarra sendo hidratada">
+      <div class="card-body">
+        <div class="card-name">Limpeza Completa + Hidratação</div>
+        <div class="card-desc">Utilizando produtos D'Addario. Inclui limpeza profunda e hidratação da escala.</div>
+        <div class="card-price-row">
+          <span class="price-label">Todos os instrumentos</span>
+          <span class="price-pill">R$ 100,00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Kit D'Addario -->
+    <div class="service-card">
+      <img class="card-img" src="daddario.png" alt="Kit completo de limpeza D'Addario">
+      <div class="card-body">
+        <div class="card-name">Kit Completo D'Addario</div>
+        <div class="card-desc">Mantenha seu instrumento sempre limpo, protegido e com aparência de novo.</div>
+        <ul class="card-steps">
+          <li><span class="step-num">1</span><span><strong>Spray Cleaner</strong> — Remove sujeiras e marcas de dedo do corpo.</span></li>
+          <li><span class="step-num">2</span><span><strong>Guitar Wax</strong> — Protege e renova o brilho da pintura.</span></li>
+          <li><span class="step-num">3</span><span><strong>Restore Detailer</strong> — Realça o brilho e remove marcas superficiais.</span></li>
+          <li><span class="step-num">4</span><span><strong>Hydrate Conditioner</strong> — Hidrata a escala, evita ressecamento.</span></li>
+          <li><span class="step-num">5</span><span><strong>XLR8 String Cleaner</strong> — Limpa e lubrifica as cordas.</span></li>
+        </ul>
+        <div class="card-price-row">
+          <span class="price-label">Guitarra · Violão · Baixo</span>
+          <span class="price-pill">Sob consulta</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="section-sep">
+
+<!-- REGULAGEM GUITARRA -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">🎸</div>
+    <div>
+      <div class="section-title">
+        <small>Regulagem</small>
+        Guitarra
+      </div>
+    </div>
+  </div>
+  <div class="card-grid">
+    <div class="service-card">
+      <img class="card-img" src="fixa.jpg" alt="Guitarra ponte fixa">
+      <div class="card-body">
+        <div class="card-name">Regulagem Básica — Ponte Fixa</div>
+        <div class="card-desc">Tensor, oitavas, altura das cordas e ajuste da ponte conforme o raio do braço.</div>
+        <div class="card-price-row">
+          <span class="price-label">Básica</span>
+          <span class="price-pill">R$ 180,00</span>
+        </div>
+      </div>
+    </div>
+    <div class="service-card">
+      <img class="card-img" src="floyd.jpg">
+      <div class="card-body">
+        <div class="card-name">Regulagem Básica — Floyd Rose</div>
+        <div class="card-desc">Regulagem completa do sistema Floyd Rose com afinação de oitavas e tensores.</div>
+        <div class="card-price-row">
+          <span class="price-label">Básica</span>
+          <span class="price-pill">R$ 290,00</span>
+        </div>
+      </div>
+    </div>
+    <div class="service-card">
+      <img class="card-img" src="pontefixaplus.jpg" alt="Guitarra completa">
+      <div class="card-body">
+        <div class="card-name">Regulagem Completa — Ponte Fixa</div>
+        <div class="card-desc">Setup completo com nivelamento de trastes, revisão elétrica, hidratação e polimento.</div>
+        <div class="card-price-row">
+          <span class="price-label">Completa</span>
+          <span class="price-pill">R$ 310,00</span>
+        </div>
+      </div>
+    </div>
+    <div class="service-card">
+      <img class="card-img" src="floydcompleta.jpg" alt="Guitarra floyd rose completo">
+      <div class="card-body">
+        <div class="card-name">Regulagem Completa — Floyd Rose</div>
+        <div class="card-desc">Setup completo para Floyd Rose incluindo todos os ajustes finos do sistema de tremolo.</div>
+        <div class="card-price-row">
+          <span class="price-label">Completa</span>
+          <span class="price-pill">R$ 345,00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-sep">
+
+<!-- REGULAGEM CONTRABAIXO -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">🎵</div>
+    <div>
+      <div class="section-title">
+        <small>Regulagem</small>
+        Contrabaixo
+      </div>
+    </div>
+  </div>
+  <div class="card-grid">
+    <div class="service-card">
+      <img class="card-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Contrabaixo 4 cordas">
+      <div class="card-body">
+        <div class="card-name">Regulagem Básica</div>
+        <div class="card-desc">Tensor, oitavas e altura das cordas para contrabaixo.</div>
+        <div class="card-price-row" style="flex-direction:column; align-items:flex-start; gap:6px">
+          <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">4 cordas</span><span class="price-pill">R$ 175,00</span></div>
+          <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">5 cordas</span><span class="price-pill">R$ 195,00</span></div>
+          <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">6 cordas</span><span class="price-pill">R$ 220,00</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="service-card">
+      <img class="card-img" src="baixomnopalco.jpg" alt="Contrabaixo completo">
+      <div class="card-body">
+        <div class="card-name">Regulagem Completa</div>
+        <div class="card-desc">Setup completo com nivelamento, revisão elétrica e hidratação da escala.</div>
+        <div class="card-price-row" style="flex-direction:column; align-items:flex-start; gap:6px">
+          <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">4 cordas</span><span class="price-pill">R$ 290,00</span></div>
+          <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">5 cordas</span><span class="price-pill">R$ 310,00</span></div>
+          <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">6 cordas</span><span class="price-pill">R$ 335,00</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-sep">
+
+<!-- REGULAGEM VIOLÃO -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">🎶</div>
+    <div>
+      <div class="section-title">
+        <small>Regulagem</small>
+        Violão & Viola
+      </div>
+    </div>
+  </div>
+  <div class="card-grid">
+    <div class="service-card">
+      <img class="card-img" src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=600&q=80" alt="Violão acústico">
+      <div class="card-body">
+        <div class="card-name">Violão — Regulagem Básica</div>
+        <div class="card-desc">Ajuste de tensor, oitavas e altura das cordas.</div>
+        <div class="card-price-row" style="flex-direction:column; align-items:flex-start; gap:6px">
+          <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">Acústico</span><span class="price-pill">R$ 115,00</span></div>
+          <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">Elétrico</span><span class="price-pill">R$ 150,00</span></div>
+          <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">12 cordas</span><span class="price-pill">R$ 175,00</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="service-card">
+      <img class="card-img" src="fender.jpg" alt="Violão completo">
+      <div class="card-body">
+        <div class="card-name">Violão — Regulagem Completa</div>
+        <div class="card-desc">Setup completo com nivelamento e hidratação da escala.</div>
+        <div class="card-price-row" style="flex-direction:column; align-items:flex-start; gap:6px">
+          <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">Acústico</span><span class="price-pill">R$ 230,00</span></div>
+          <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">Elétrico</span><span class="price-pill">R$ 265,00</span></div>
+          <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">12 cordas</span><span class="price-pill">R$ 290,00</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="service-card">
+      <img class="card-img" src="viola.jpg" alt="Viola caipira">
+      <div class="card-body">
+        <div class="card-name">Viola — Regulagem</div>
+        <div class="card-desc">Regulagem básica ou completa para viola caipira.</div>
+        <div class="card-price-row" style="flex-direction:column; align-items:flex-start; gap:6px">
+          <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">Básica</span><span class="price-pill">R$ 150,00</span></div>
+          <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">Completa</span><span class="price-pill">R$ 265,00</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-sep">
+
+<!-- TROCA DE CORDAS -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">🔁</div>
+    <div>
+      <div class="section-title">
+        <small>Manutenção</small>
+        Troca de Cordas
+      </div>
+    </div>
+  </div>
+  <div class="price-list">
+    <div class="price-item"><span class="price-item-name">Guitarra — Ponte Fixa</span><span class="price-item-value">R$ 60,00</span></div>
+    <div class="price-item"><span class="price-item-name">Guitarra — Floyd Rose</span><span class="price-item-value">R$ 115,00</span></div>
+    <div class="price-item"><span class="price-item-name">Contrabaixo — 4 cordas</span><span class="price-item-value">R$ 60,00</span></div>
+    <div class="price-item"><span class="price-item-name">Contrabaixo — 5 cordas</span><span class="price-item-value">R$ 90,00</span></div>
+    <div class="price-item"><span class="price-item-name">Contrabaixo — 6 cordas</span><span class="price-item-value">R$ 105,00</span></div>
+    <div class="price-item"><span class="price-item-name">Violão — 6 cordas</span><span class="price-item-value">R$ 35,00</span></div>
+    <div class="price-item"><span class="price-item-name">Violão — 12 cordas</span><span class="price-item-value">R$ 70,00</span></div>
+    <div class="price-item"><span class="price-item-name">Viola</span><span class="price-item-value">R$ 60,00</span></div>
+  </div>
+</div>
+
+<hr class="section-sep">
+
+<!-- SERVIÇOS INDIVIDUAIS GUITARRA -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">🔧</div>
+    <div>
+      <div class="section-title">
+        <small>Serviços Individuais</small>
+        Guitarra & Contrabaixo
+      </div>
+    </div>
+  </div>
+  <div class="price-list">
+    <div class="price-item"><span class="price-item-name">Polimento de trastes</span><span class="price-item-value">R$ 40,00</span></div>
+    <div class="price-item"><span class="price-item-name">Limpeza e hidratação da escala</span><span class="price-item-value">R$ 100,00</span></div>
+    <div class="price-item"><span class="price-item-name">Ajuste de oitavas</span><span class="price-item-value">R$ 60,00</span></div>
+    <div class="price-item"><span class="price-item-name">Retífica e nivelamento de trastes</span><span class="price-item-value">R$ 230,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca de trastes</span><span class="price-item-value">R$ 300,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca de tensor (remoção traseira)</span><span class="price-item-value">R$ 310,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca de tensor (remoção sob escala)</span><span class="price-item-value">R$ 345,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca da pestana</span><span class="price-item-value">R$ 60,00</span></div>
+    <div class="price-item"><span class="price-item-name">Soldagem de componentes elétricos</span><span class="price-item-value">R$ 45,00</span></div>
+    <div class="price-item"><span class="price-item-name">Substituição de potenciômetros (cada)</span><span class="price-item-value">R$ 20,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca de captadores</span><span class="price-item-value">R$ 195,00</span></div>
+    <div class="price-item"><span class="price-item-name">Blindagem</span><span class="price-item-value">R$ 290,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca de circuito elétrico (2 pots.)</span><span class="price-item-value">R$ 175,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca de circuito elétrico (3 pots.)</span><span class="price-item-value">R$ 230,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca de tarraxas</span><span class="price-item-value">R$ 35,00</span></div>
+    <div class="price-item"><span class="price-item-name">Colagem de cavalete</span><span class="price-item-value">R$ 175,00</span></div>
+  </div>
+</div>
+
+<hr class="section-sep">
+
+<!-- SERVIÇOS INDIVIDUAIS VIOLÃO -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">🎻</div>
+    <div>
+      <div class="section-title">
+        <small>Serviços Individuais</small>
+        Violão
+      </div>
+    </div>
+  </div>
+  <div class="price-list">
+    <div class="price-item"><span class="price-item-name">Polimento de trastes</span><span class="price-item-value">R$ 20,00</span></div>
+    <div class="price-item"><span class="price-item-name">Limpeza e hidratação da escala</span><span class="price-item-value">R$ 35,00</span></div>
+    <div class="price-item"><span class="price-item-name">Retífica e alinhamento de trastes</span><span class="price-item-value">R$ 400,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca de trastes</span><span class="price-item-value">R$ 400,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca de tarraxas blindadas</span><span class="price-item-value">R$ 60,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca de tarraxas comuns</span><span class="price-item-value">R$ 35,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca de rastilho</span><span class="price-item-value">R$ 45,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca da pestana</span><span class="price-item-value">R$ 40,00</span></div>
+    <div class="price-item"><span class="price-item-name">Ajuste da altura das cordas</span><span class="price-item-value">R$ 40,00</span></div>
+  </div>
+</div>
+
+<hr class="section-sep">
+
+<!-- O QUE ESTÁ INCLUSO -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">✅</div>
+    <div>
+      <div class="section-title">
+        <small>O que está incluso</small>
+        Comparativo de Setups
+      </div>
+    </div>
+  </div>
+  <div class="setup-grid">
+    <div class="setup-card">
+      <div class="setup-badge">Setup Básico</div>
+      <div class="setup-name">O Essencial</div>
+      <ul class="setup-features">
+        <li>Regulagem de tensor</li>
+        <li>Regulagem de oitavas</li>
+        <li>Ajuste da altura das cordas</li>
+        <li>Regulagem da ponte conforme o raio do braço</li>
+      </ul>
+    </div>
+    <div class="setup-card featured">
+      <div class="setup-badge">Setup Completo</div>
+      <div class="setup-name">O Premium</div>
+      <ul class="setup-features">
+        <li>Alinhamento de trastes</li>
+        <li>Ajuste da altura das cordas</li>
+        <li>Regulagem de tensor</li>
+        <li>Regulagem de oitavas</li>
+        <li>Revisão elétrica completa</li>
+        <li>Hidratação da escala</li>
+        <li>Limpeza completa do instrumento</li>
+        <li>Polimento de trastes</li>
+        <li>Regulagem da ponte conforme o raio</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr class="section-sep">
+
+<!-- INFORMAÇÕES IMPORTANTES -->
+<div class="info-banner" style="padding-top:48px">
+  <div style="text-align:center;margin-bottom:24px">
+    <p style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:500">ℹ️ Informações Importantes</p>
+  </div>
+  <div class="info-inner">
+    <div class="info-item">
+      <div class="info-dot"></div>
+      <p class="info-text">Dependendo do instrumento, podem ser necessários <strong>serviços adicionais</strong>. Entraremos em contato antes da execução.</p>
+    </div>
+    <div class="info-item">
+      <div class="info-dot"></div>
+      <p class="info-text">Os valores podem <strong>variar conforme o estado</strong> e as condições do instrumento, sendo necessária avaliação prévia.</p>
+    </div>
+    <div class="info-item">
+      <div class="info-dot"></div>
+      <p class="info-text"><strong>Garantia de 90 dias</strong> para todos os serviços de regulagem.</p>
+    </div>
+    <div class="info-item">
+      <div class="info-dot"></div>
+      <p class="info-text">Instrumentos não retirados em até <strong>90 dias</strong> após a conclusão poderão ser vendidos para cobertura dos custos.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  HITEXX — Luthieria & Regulagens &nbsp;·&nbsp; Todos os preços em Reais (BRL)
+</footer>
+
+</body>
+</html>
