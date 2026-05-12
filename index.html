@@ -15,7 +15,7 @@
     --gold-light: #e8c87a;
     --gold-dim: rgba(201,164,74,0.15);
     --text: #f0ece4;
-    --muted: #8a8278;
+    --muted: #a09890;
     --accent: #e85d3a;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -42,14 +42,13 @@
     pointer-events: none;
   }
   .hero-logo {
-  width: 220px;
-  height: auto;
-  object-fit: contain;
-  margin: 0 auto 24px;
-  display: block;
-  opacity: 0.95;
-}
-
+    width: 220px;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto 24px;
+    display: block;
+    opacity: 0.95;
+  }
   .hero-eyebrow {
     font-family: 'DM Sans', sans-serif;
     font-size: 11px;
@@ -69,12 +68,15 @@
     margin-bottom: 16px;
   }
   .hero h1 span { color: var(--accent); }
+
+  /* MELHORIA: subtítulo mais legível */
   .hero-sub {
-    font-size: 15px;
-    color: var(--muted);
+    font-size: 16px;
+    color: #c8c0b4;
     max-width: 420px;
     margin: 0 auto;
     line-height: 1.7;
+    font-weight: 400;
   }
   .divider {
     width: 60px;
@@ -125,11 +127,12 @@
     margin-bottom: 4px;
   }
 
-  /* CARD GRID */
+  /* CARD GRID — MELHORIA: altura uniforme */
   .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 16px;
+    align-items: stretch;
   }
 
   .service-card {
@@ -138,9 +141,11 @@
     border-radius: 16px;
     overflow: hidden;
     transition: border-color 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
   }
   .service-card:hover {
-    border-color: rgba(255, 0, 0, 0.35);
+    border-color: rgba(201,164,74,0.35);
     transform: translateY(-2px);
   }
   .card-img {
@@ -149,8 +154,14 @@
     object-fit: cover;
     display: block;
     filter: brightness(0.75) saturate(0.9);
+    flex-shrink: 0;
   }
-  .card-body { padding: 20px; }
+  .card-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
   .card-name {
     font-family: 'Playfair Display', serif;
     font-size: 18px;
@@ -163,6 +174,7 @@
     color: var(--muted);
     line-height: 1.6;
     margin-bottom: 16px;
+    flex: 1;
   }
   .card-price-row {
     display: flex;
@@ -170,6 +182,7 @@
     align-items: center;
     gap: 8px;
     flex-wrap: wrap;
+    margin-top: auto;
   }
   .price-pill {
     background: var(--gold-dim);
@@ -188,7 +201,7 @@
     letter-spacing: 1px;
   }
 
-  /* CARD STEPS (kit D'Addario) */
+  /* CARD STEPS */
   .card-steps {
     list-style: none;
     display: flex;
@@ -224,12 +237,31 @@
     font-weight: 500;
   }
 
-  /* PRICE TABLE (list items) */
+  /* PRICE TABLE */
   .price-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 8px;
   }
+
+  /* MELHORIA: subgrupos nos serviços individuais */
+  .price-group {
+    margin-bottom: 28px;
+  }
+  .price-group:last-child { margin-bottom: 0; }
+  .price-group-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+    padding-left: 4px;
+    border-left: 2px solid var(--gold);
+    padding-left: 10px;
+    opacity: 0.8;
+  }
+
   .price-item {
     display: flex;
     align-items: center;
@@ -254,11 +286,11 @@
     white-space: nowrap;
   }
 
-  /* SETUP COMPARISON */
+  /* SETUP COMPARISON — MELHORIA: destaque visual maior */
   .setup-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    gap: 20px;
   }
   @media (max-width: 600px) { .setup-grid { grid-template-columns: 1fr; } }
 
@@ -266,11 +298,30 @@
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 24px;
+    padding: 28px;
+    position: relative;
   }
+  /* MELHORIA: card premium muito mais destacado */
   .setup-card.featured {
-    border-color: rgba(201,164,74,0.4);
-    background: linear-gradient(135deg, #221e16 0%, #1a1612 100%);
+    border: 2px solid var(--gold);
+    background: linear-gradient(135deg, #2a2416 0%, #1e1a12 100%);
+    box-shadow: 0 0 40px rgba(201,164,74,0.1), inset 0 1px 0 rgba(201,164,74,0.15);
+  }
+  /* MELHORIA: badge "Mais Escolhido" */
+  .setup-popular-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: #0e0c0a;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 999px;
+    white-space: nowrap;
   }
   .setup-badge {
     display: inline-block;
@@ -287,10 +338,11 @@
   }
   .setup-name {
     font-family: 'Playfair Display', serif;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 700;
     margin-bottom: 20px;
   }
+  .setup-card.featured .setup-name { color: var(--gold-light); }
   .setup-features {
     list-style: none;
     display: flex;
@@ -312,12 +364,24 @@
     margin-top: 3px;
     flex-shrink: 0;
   }
+  .setup-card.featured .setup-features li { color: #c8bfa8; }
 
-  /* INFO BANNER */
+  /* INFO BANNER — MELHORIA: texto mais legível */
   .info-banner {
     max-width: 1100px;
     margin: 0 auto 60px;
     padding: 0 24px;
+  }
+  .info-section-label {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .info-section-label p {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
   }
   .info-inner {
     background: var(--card);
@@ -337,7 +401,12 @@
     flex-shrink: 0;
     margin-top: 6px;
   }
-  .info-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  /* MELHORIA: texto de info com melhor contraste */
+  .info-text {
+    font-size: 14px;
+    color: #b0a898;
+    line-height: 1.7;
+  }
   .info-text strong { color: var(--text); font-weight: 500; }
 
   /* SEPARATOR */
@@ -355,6 +424,13 @@
     font-size: 12px;
     color: var(--muted);
     letter-spacing: 1px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 600px) {
+    .card-grid { grid-template-columns: 1fr; }
+    .price-list { grid-template-columns: 1fr; }
+    .info-inner { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -381,8 +457,6 @@
     </div>
   </div>
   <div class="card-grid">
-
-    <!-- Card 1: Limpeza Completa -->
     <div class="service-card">
       <img class="card-img" src="limpeza.jpg" alt="Escala de guitarra sendo hidratada">
       <div class="card-body">
@@ -394,8 +468,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Card 2: Kit D'Addario -->
     <div class="service-card">
       <img class="card-img" src="daddario.png" alt="Kit completo de limpeza D'Addario">
       <div class="card-body">
@@ -414,7 +486,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
@@ -444,7 +515,7 @@
       </div>
     </div>
     <div class="service-card">
-      <img class="card-img" src="floyd.jpg">
+      <img class="card-img" src="floyd.jpg" alt="Guitarra Floyd Rose">
       <div class="card-body">
         <div class="card-name">Regulagem Básica — Floyd Rose</div>
         <div class="card-desc">Regulagem completa do sistema Floyd Rose com afinação de oitavas e tensores.</div>
@@ -466,7 +537,7 @@
       </div>
     </div>
     <div class="service-card">
-      <img class="card-img" src="floydcompleta.jpg" alt="Guitarra floyd rose completo">
+      <img class="card-img" src="floydcompleta.jpg" alt="Guitarra Floyd Rose completo">
       <div class="card-body">
         <div class="card-name">Regulagem Completa — Floyd Rose</div>
         <div class="card-desc">Setup completo para Floyd Rose incluindo todos os ajustes finos do sistema de tremolo.</div>
@@ -498,7 +569,7 @@
       <div class="card-body">
         <div class="card-name">Regulagem Básica</div>
         <div class="card-desc">Tensor, oitavas e altura das cordas para contrabaixo.</div>
-        <div class="card-price-row" style="flex-direction:column; align-items:flex-start; gap:6px">
+        <div class="card-price-row" style="flex-direction:column; align-items:flex-start; gap:6px; margin-top:auto;">
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">4 cordas</span><span class="price-pill">R$ 175,00</span></div>
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">5 cordas</span><span class="price-pill">R$ 195,00</span></div>
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">6 cordas</span><span class="price-pill">R$ 220,00</span></div>
@@ -510,7 +581,7 @@
       <div class="card-body">
         <div class="card-name">Regulagem Completa</div>
         <div class="card-desc">Setup completo com nivelamento, revisão elétrica e hidratação da escala.</div>
-        <div class="card-price-row" style="flex-direction:column; align-items:flex-start; gap:6px">
+        <div class="card-price-row" style="flex-direction:column; align-items:flex-start; gap:6px; margin-top:auto;">
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">4 cordas</span><span class="price-pill">R$ 290,00</span></div>
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">5 cordas</span><span class="price-pill">R$ 310,00</span></div>
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">6 cordas</span><span class="price-pill">R$ 335,00</span></div>
@@ -539,7 +610,7 @@
       <div class="card-body">
         <div class="card-name">Violão — Regulagem Básica</div>
         <div class="card-desc">Ajuste de tensor, oitavas e altura das cordas.</div>
-        <div class="card-price-row" style="flex-direction:column; align-items:flex-start; gap:6px">
+        <div class="card-price-row" style="flex-direction:column; align-items:flex-start; gap:6px; margin-top:auto;">
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">Acústico</span><span class="price-pill">R$ 115,00</span></div>
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">Elétrico</span><span class="price-pill">R$ 150,00</span></div>
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">12 cordas</span><span class="price-pill">R$ 175,00</span></div>
@@ -551,7 +622,7 @@
       <div class="card-body">
         <div class="card-name">Violão — Regulagem Completa</div>
         <div class="card-desc">Setup completo com nivelamento e hidratação da escala.</div>
-        <div class="card-price-row" style="flex-direction:column; align-items:flex-start; gap:6px">
+        <div class="card-price-row" style="flex-direction:column; align-items:flex-start; gap:6px; margin-top:auto;">
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">Acústico</span><span class="price-pill">R$ 230,00</span></div>
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">Elétrico</span><span class="price-pill">R$ 265,00</span></div>
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">12 cordas</span><span class="price-pill">R$ 290,00</span></div>
@@ -563,7 +634,7 @@
       <div class="card-body">
         <div class="card-name">Viola — Regulagem</div>
         <div class="card-desc">Regulagem básica ou completa para viola caipira.</div>
-        <div class="card-price-row" style="flex-direction:column; align-items:flex-start; gap:6px">
+        <div class="card-price-row" style="flex-direction:column; align-items:flex-start; gap:6px; margin-top:auto;">
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">Básica</span><span class="price-pill">R$ 150,00</span></div>
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">Completa</span><span class="price-pill">R$ 265,00</span></div>
         </div>
@@ -599,7 +670,7 @@
 
 <hr class="section-sep">
 
-<!-- SERVIÇOS INDIVIDUAIS GUITARRA -->
+<!-- SERVIÇOS INDIVIDUAIS GUITARRA & CONTRABAIXO — MELHORIA: agrupado por categoria -->
 <div class="section">
   <div class="section-header">
     <div class="section-icon">🔧</div>
@@ -610,29 +681,51 @@
       </div>
     </div>
   </div>
-  <div class="price-list">
-    <div class="price-item"><span class="price-item-name">Polimento de trastes</span><span class="price-item-value">R$ 40,00</span></div>
-    <div class="price-item"><span class="price-item-name">Limpeza e hidratação da escala</span><span class="price-item-value">R$ 100,00</span></div>
-    <div class="price-item"><span class="price-item-name">Ajuste de oitavas</span><span class="price-item-value">R$ 60,00</span></div>
-    <div class="price-item"><span class="price-item-name">Retífica e nivelamento de trastes</span><span class="price-item-value">R$ 230,00</span></div>
-    <div class="price-item"><span class="price-item-name">Troca de trastes</span><span class="price-item-value">R$ 300,00</span></div>
-    <div class="price-item"><span class="price-item-name">Troca de tensor (remoção traseira)</span><span class="price-item-value">R$ 310,00</span></div>
-    <div class="price-item"><span class="price-item-name">Troca de tensor (remoção sob escala)</span><span class="price-item-value">R$ 345,00</span></div>
-    <div class="price-item"><span class="price-item-name">Troca da pestana</span><span class="price-item-value">R$ 60,00</span></div>
-    <div class="price-item"><span class="price-item-name">Soldagem de componentes elétricos</span><span class="price-item-value">R$ 45,00</span></div>
-    <div class="price-item"><span class="price-item-name">Substituição de potenciômetros (cada)</span><span class="price-item-value">R$ 20,00</span></div>
-    <div class="price-item"><span class="price-item-name">Troca de captadores</span><span class="price-item-value">R$ 195,00</span></div>
-    <div class="price-item"><span class="price-item-name">Blindagem</span><span class="price-item-value">R$ 290,00</span></div>
-    <div class="price-item"><span class="price-item-name">Troca de circuito elétrico (2 pots.)</span><span class="price-item-value">R$ 175,00</span></div>
-    <div class="price-item"><span class="price-item-name">Troca de circuito elétrico (3 pots.)</span><span class="price-item-value">R$ 230,00</span></div>
-    <div class="price-item"><span class="price-item-name">Troca de tarraxas</span><span class="price-item-value">R$ 35,00</span></div>
-    <div class="price-item"><span class="price-item-name">Colagem de cavalete</span><span class="price-item-value">R$ 175,00</span></div>
+
+  <div class="price-group">
+    <div class="price-group-label">Mecânica & Trastes</div>
+    <div class="price-list">
+      <div class="price-item"><span class="price-item-name">Polimento de trastes</span><span class="price-item-value">R$ 40,00</span></div>
+      <div class="price-item"><span class="price-item-name">Retífica e nivelamento de trastes</span><span class="price-item-value">R$ 230,00</span></div>
+      <div class="price-item"><span class="price-item-name">Troca de trastes</span><span class="price-item-value">R$ 300,00</span></div>
+      <div class="price-item"><span class="price-item-name">Troca da pestana</span><span class="price-item-value">R$ 60,00</span></div>
+      <div class="price-item"><span class="price-item-name">Troca de tarraxas</span><span class="price-item-value">R$ 35,00</span></div>
+      <div class="price-item"><span class="price-item-name">Colagem de cavalete</span><span class="price-item-value">R$ 175,00</span></div>
+    </div>
+  </div>
+
+  <div class="price-group">
+    <div class="price-group-label">Tensor & Ajustes</div>
+    <div class="price-list">
+      <div class="price-item"><span class="price-item-name">Ajuste de oitavas</span><span class="price-item-value">R$ 60,00</span></div>
+      <div class="price-item"><span class="price-item-name">Troca de tensor (remoção traseira)</span><span class="price-item-value">R$ 310,00</span></div>
+      <div class="price-item"><span class="price-item-name">Troca de tensor (remoção sob escala)</span><span class="price-item-value">R$ 345,00</span></div>
+    </div>
+  </div>
+
+  <div class="price-group">
+    <div class="price-group-label">Limpeza & Conservação</div>
+    <div class="price-list">
+      <div class="price-item"><span class="price-item-name">Limpeza e hidratação da escala</span><span class="price-item-value">R$ 100,00</span></div>
+    </div>
+  </div>
+
+  <div class="price-group">
+    <div class="price-group-label">Elétrica</div>
+    <div class="price-list">
+      <div class="price-item"><span class="price-item-name">Soldagem de componentes elétricos</span><span class="price-item-value">R$ 45,00</span></div>
+      <div class="price-item"><span class="price-item-name">Substituição de potenciômetros (cada)</span><span class="price-item-value">R$ 20,00</span></div>
+      <div class="price-item"><span class="price-item-name">Troca de captadores</span><span class="price-item-value">R$ 195,00</span></div>
+      <div class="price-item"><span class="price-item-name">Blindagem</span><span class="price-item-value">R$ 290,00</span></div>
+      <div class="price-item"><span class="price-item-name">Troca de circuito elétrico (2 pots.)</span><span class="price-item-value">R$ 175,00</span></div>
+      <div class="price-item"><span class="price-item-name">Troca de circuito elétrico (3 pots.)</span><span class="price-item-value">R$ 230,00</span></div>
+    </div>
   </div>
 </div>
 
 <hr class="section-sep">
 
-<!-- SERVIÇOS INDIVIDUAIS VIOLÃO -->
+<!-- SERVIÇOS INDIVIDUAIS VIOLÃO — MELHORIA: agrupado por categoria -->
 <div class="section">
   <div class="section-header">
     <div class="section-icon">🎻</div>
@@ -643,22 +736,38 @@
       </div>
     </div>
   </div>
-  <div class="price-list">
-    <div class="price-item"><span class="price-item-name">Polimento de trastes</span><span class="price-item-value">R$ 20,00</span></div>
-    <div class="price-item"><span class="price-item-name">Limpeza e hidratação da escala</span><span class="price-item-value">R$ 35,00</span></div>
-    <div class="price-item"><span class="price-item-name">Retífica e alinhamento de trastes</span><span class="price-item-value">R$ 400,00</span></div>
-    <div class="price-item"><span class="price-item-name">Troca de trastes</span><span class="price-item-value">R$ 400,00</span></div>
-    <div class="price-item"><span class="price-item-name">Troca de tarraxas blindadas</span><span class="price-item-value">R$ 60,00</span></div>
-    <div class="price-item"><span class="price-item-name">Troca de tarraxas comuns</span><span class="price-item-value">R$ 35,00</span></div>
-    <div class="price-item"><span class="price-item-name">Troca de rastilho</span><span class="price-item-value">R$ 45,00</span></div>
-    <div class="price-item"><span class="price-item-name">Troca da pestana</span><span class="price-item-value">R$ 40,00</span></div>
-    <div class="price-item"><span class="price-item-name">Ajuste da altura das cordas</span><span class="price-item-value">R$ 40,00</span></div>
+
+  <div class="price-group">
+    <div class="price-group-label">Mecânica & Trastes</div>
+    <div class="price-list">
+      <div class="price-item"><span class="price-item-name">Polimento de trastes</span><span class="price-item-value">R$ 20,00</span></div>
+      <div class="price-item"><span class="price-item-name">Retífica e alinhamento de trastes</span><span class="price-item-value">R$ 400,00</span></div>
+      <div class="price-item"><span class="price-item-name">Troca de trastes</span><span class="price-item-value">R$ 400,00</span></div>
+      <div class="price-item"><span class="price-item-name">Troca de rastilho</span><span class="price-item-value">R$ 45,00</span></div>
+      <div class="price-item"><span class="price-item-name">Troca da pestana</span><span class="price-item-value">R$ 40,00</span></div>
+      <div class="price-item"><span class="price-item-name">Troca de tarraxas blindadas</span><span class="price-item-value">R$ 60,00</span></div>
+      <div class="price-item"><span class="price-item-name">Troca de tarraxas comuns</span><span class="price-item-value">R$ 35,00</span></div>
+    </div>
+  </div>
+
+  <div class="price-group">
+    <div class="price-group-label">Ajustes</div>
+    <div class="price-list">
+      <div class="price-item"><span class="price-item-name">Ajuste da altura das cordas</span><span class="price-item-value">R$ 40,00</span></div>
+    </div>
+  </div>
+
+  <div class="price-group">
+    <div class="price-group-label">Limpeza & Conservação</div>
+    <div class="price-list">
+      <div class="price-item"><span class="price-item-name">Limpeza e hidratação da escala</span><span class="price-item-value">R$ 35,00</span></div>
+    </div>
   </div>
 </div>
 
 <hr class="section-sep">
 
-<!-- O QUE ESTÁ INCLUSO -->
+<!-- COMPARATIVO DE SETUPS — MELHORIA: destaque premium -->
 <div class="section">
   <div class="section-header">
     <div class="section-icon">✅</div>
@@ -681,6 +790,7 @@
       </ul>
     </div>
     <div class="setup-card featured">
+      <div class="setup-popular-badge">⭐ Mais Escolhido</div>
       <div class="setup-badge">Setup Completo</div>
       <div class="setup-name">O Premium</div>
       <ul class="setup-features">
@@ -702,8 +812,8 @@
 
 <!-- INFORMAÇÕES IMPORTANTES -->
 <div class="info-banner" style="padding-top:48px">
-  <div style="text-align:center;margin-bottom:24px">
-    <p style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:500">ℹ️ Informações Importantes</p>
+  <div class="info-section-label">
+    <p>ℹ️ Informações Importantes</p>
   </div>
   <div class="info-inner">
     <div class="info-item">
