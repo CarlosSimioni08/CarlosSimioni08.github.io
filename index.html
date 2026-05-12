@@ -15,7 +15,7 @@
     --gold-light: #e8c87a;
     --gold-dim: rgba(201,164,74,0.15);
     --text: #f0ece4;
-    --muted: #a09890;
+    --muted: #8a8278;
     --accent: #e85d3a;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -41,14 +41,6 @@
     background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,164,74,0.12) 0%, transparent 70%);
     pointer-events: none;
   }
-  .hero-logo {
-    width: 220px;
-    height: auto;
-    object-fit: contain;
-    margin: 0 auto 24px;
-    display: block;
-    opacity: 0.95;
-  }
   .hero-eyebrow {
     font-family: 'DM Sans', sans-serif;
     font-size: 11px;
@@ -68,17 +60,35 @@
     margin-bottom: 16px;
   }
   .hero h1 span { color: var(--accent); }
-
-  /* MELHORIA: subtítulo mais legível */
   .hero-sub {
-    font-size: 16px;
-    color: #c8c0b4;
+    font-size: 15px;
+    color: var(--muted);
     max-width: 420px;
     margin: 0 auto;
     line-height: 1.7;
-    font-weight: 400;
   }
-  .divider {
+  .hero-logo {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 24px;
+    display: block;
+    filter: brightness(0) invert(1) opacity(0.9);
+  }
+  .hero-logo {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 24px;
+    display: block;
+    filter: brightness(0) invert(1) opacity(0.9);
+  }
+  .hero-logo {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 24px;
+    display: block;
+    filter: brightness(0) invert(1) opacity(0.9);
+  }
+    .divider {
     width: 60px;
     height: 1px;
     background: var(--gold);
@@ -127,12 +137,11 @@
     margin-bottom: 4px;
   }
 
-  /* CARD GRID — MELHORIA: altura uniforme */
+  /* CARD GRID */
   .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 16px;
-    align-items: stretch;
   }
 
   .service-card {
@@ -141,11 +150,9 @@
     border-radius: 16px;
     overflow: hidden;
     transition: border-color 0.2s, transform 0.2s;
-    display: flex;
-    flex-direction: column;
   }
   .service-card:hover {
-    border-color: rgba(201,164,74,0.35);
+    border-color: rgba(255, 0, 0, 0.35);
     transform: translateY(-2px);
   }
   .card-img {
@@ -154,14 +161,8 @@
     object-fit: cover;
     display: block;
     filter: brightness(0.75) saturate(0.9);
-    flex-shrink: 0;
   }
-  .card-body {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
+  .card-body { padding: 20px; }
   .card-name {
     font-family: 'Playfair Display', serif;
     font-size: 18px;
@@ -174,7 +175,6 @@
     color: var(--muted);
     line-height: 1.6;
     margin-bottom: 16px;
-    flex: 1;
   }
   .card-price-row {
     display: flex;
@@ -182,7 +182,6 @@
     align-items: center;
     gap: 8px;
     flex-wrap: wrap;
-    margin-top: auto;
   }
   .price-pill {
     background: var(--gold-dim);
@@ -201,7 +200,7 @@
     letter-spacing: 1px;
   }
 
-  /* CARD STEPS */
+  /* CARD STEPS (kit D'Addario) */
   .card-steps {
     list-style: none;
     display: flex;
@@ -237,31 +236,12 @@
     font-weight: 500;
   }
 
-  /* PRICE TABLE */
+  /* PRICE TABLE (list items) */
   .price-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 8px;
   }
-
-  /* MELHORIA: subgrupos nos serviços individuais */
-  .price-group {
-    margin-bottom: 28px;
-  }
-  .price-group:last-child { margin-bottom: 0; }
-  .price-group-label {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 10px;
-    padding-left: 4px;
-    border-left: 2px solid var(--gold);
-    padding-left: 10px;
-    opacity: 0.8;
-  }
-
   .price-item {
     display: flex;
     align-items: center;
@@ -286,11 +266,11 @@
     white-space: nowrap;
   }
 
-  /* SETUP COMPARISON — MELHORIA: destaque visual maior */
+  /* SETUP COMPARISON */
   .setup-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    gap: 16px;
   }
   @media (max-width: 600px) { .setup-grid { grid-template-columns: 1fr; } }
 
@@ -298,30 +278,11 @@
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 28px;
-    position: relative;
+    padding: 24px;
   }
-  /* MELHORIA: card premium muito mais destacado */
   .setup-card.featured {
-    border: 2px solid var(--gold);
-    background: linear-gradient(135deg, #2a2416 0%, #1e1a12 100%);
-    box-shadow: 0 0 40px rgba(201,164,74,0.1), inset 0 1px 0 rgba(201,164,74,0.15);
-  }
-  /* MELHORIA: badge "Mais Escolhido" */
-  .setup-popular-badge {
-    position: absolute;
-    top: -14px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--gold);
-    color: #0e0c0a;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 5px 16px;
-    border-radius: 999px;
-    white-space: nowrap;
+    border-color: rgba(201,164,74,0.4);
+    background: linear-gradient(135deg, #221e16 0%, #1a1612 100%);
   }
   .setup-badge {
     display: inline-block;
@@ -338,11 +299,10 @@
   }
   .setup-name {
     font-family: 'Playfair Display', serif;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 700;
     margin-bottom: 20px;
   }
-  .setup-card.featured .setup-name { color: var(--gold-light); }
   .setup-features {
     list-style: none;
     display: flex;
@@ -364,24 +324,12 @@
     margin-top: 3px;
     flex-shrink: 0;
   }
-  .setup-card.featured .setup-features li { color: #c8bfa8; }
 
-  /* INFO BANNER — MELHORIA: texto mais legível */
+  /* INFO BANNER */
   .info-banner {
     max-width: 1100px;
     margin: 0 auto 60px;
     padding: 0 24px;
-  }
-  .info-section-label {
-    text-align: center;
-    margin-bottom: 24px;
-  }
-  .info-section-label p {
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 500;
   }
   .info-inner {
     background: var(--card);
@@ -401,12 +349,7 @@
     flex-shrink: 0;
     margin-top: 6px;
   }
-  /* MELHORIA: texto de info com melhor contraste */
-  .info-text {
-    font-size: 14px;
-    color: #b0a898;
-    line-height: 1.7;
-  }
+  .info-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
   .info-text strong { color: var(--text); font-weight: 500; }
 
   /* SEPARATOR */
@@ -426,12 +369,199 @@
     letter-spacing: 1px;
   }
 
-  /* RESPONSIVE */
-  @media (max-width: 600px) {
-    .card-grid { grid-template-columns: 1fr; }
-    .price-list { grid-template-columns: 1fr; }
-    .info-inner { grid-template-columns: 1fr; }
+  /* WHATSAPP BUTTON */
+  .hero-cta {
+    margin-top: 32px;
   }
+  .btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #25D366;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 14px 28px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+    letter-spacing: 0.3px;
+  }
+  .btn-whatsapp:hover {
+    background: #20bd5a;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(37,211,102,0.45);
+  }
+  .btn-whatsapp svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  /* WHATSAPP FLOATING BUTTON */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 58px;
+    height: 58px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+    z-index: 1000;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+  }
+  .whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 30px rgba(37,211,102,0.55);
+  }
+  .whatsapp-float svg {
+    width: 30px;
+    height: 30px;
+  }
+
+
+  /* LOCATION SECTION */
+  .location-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+  .location-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: stretch;
+  }
+  @media (max-width: 768px) { .location-grid { grid-template-columns: 1fr; } }
+
+  .location-map {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    min-height: 320px;
+  }
+  .location-map iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    display: block;
+    border: none;
+    filter: grayscale(30%) brightness(0.85);
+  }
+
+  .location-info {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .location-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .location-stars {
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: var(--gold);
+  }
+  .location-rating-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold-light);
+  }
+  .location-rating-label {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .location-detail {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .location-detail-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--gold-dim);
+    border: 1px solid rgba(201,164,74,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+  .location-detail-content {}
+  .location-detail-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 4px;
+    opacity: 0.8;
+  }
+  .location-detail-value {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .location-detail-value a {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .location-detail-value a:hover { color: var(--gold); }
+
+  .hours-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 16px;
+  }
+  .hours-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 3px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .hours-row .day { color: var(--text); font-weight: 400; }
+  .hours-row .closed { color: #e85d3a; }
+
+  .btn-directions {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold-dim);
+    border: 1px solid rgba(201,164,74,0.35);
+    color: var(--gold-light);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 12px 22px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    align-self: flex-start;
+  }
+  .btn-directions:hover {
+    background: rgba(201,164,74,0.25);
+    border-color: rgba(201,164,74,0.6);
+    transform: translateY(-1px);
+  }
+
 </style>
 </head>
 <body>
@@ -443,6 +573,15 @@
   <h1>Hitexx<br><span>Serviços</span></h1>
   <p class="hero-sub">Cuidado profissional para seu instrumento. Qualidade e garantia em cada regulagem.</p>
   <div class="divider"></div>
+  <div class="hero-cta">
+    <a href="https://wa.me/5549991647761?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." class="btn-whatsapp" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.828L.057 23.428a.5.5 0 00.609.61l5.7-1.49A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-4.99-1.366l-.357-.213-3.706.97.987-3.607-.233-.37A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
+      </svg>
+      Solicitar Orçamento
+    </a>
+  </div>
 </div>
 
 <!-- LIMPEZA -->
@@ -457,6 +596,8 @@
     </div>
   </div>
   <div class="card-grid">
+
+    <!-- Card 1: Limpeza Completa -->
     <div class="service-card">
       <img class="card-img" src="limpeza.jpg" alt="Escala de guitarra sendo hidratada">
       <div class="card-body">
@@ -468,6 +609,8 @@
         </div>
       </div>
     </div>
+
+    <!-- Card 2: Kit D'Addario -->
     <div class="service-card">
       <img class="card-img" src="daddario.png" alt="Kit completo de limpeza D'Addario">
       <div class="card-body">
@@ -486,6 +629,7 @@
         </div>
       </div>
     </div>
+
   </div>
 </div>
 
@@ -515,7 +659,7 @@
       </div>
     </div>
     <div class="service-card">
-      <img class="card-img" src="floyd.jpg" alt="Guitarra Floyd Rose">
+      <img class="card-img" src="floyd.jpg">
       <div class="card-body">
         <div class="card-name">Regulagem Básica — Floyd Rose</div>
         <div class="card-desc">Regulagem completa do sistema Floyd Rose com afinação de oitavas e tensores.</div>
@@ -537,7 +681,7 @@
       </div>
     </div>
     <div class="service-card">
-      <img class="card-img" src="floydcompleta.jpg" alt="Guitarra Floyd Rose completo">
+      <img class="card-img" src="floydcompleta.jpg" alt="Guitarra floyd rose completo">
       <div class="card-body">
         <div class="card-name">Regulagem Completa — Floyd Rose</div>
         <div class="card-desc">Setup completo para Floyd Rose incluindo todos os ajustes finos do sistema de tremolo.</div>
@@ -569,7 +713,7 @@
       <div class="card-body">
         <div class="card-name">Regulagem Básica</div>
         <div class="card-desc">Tensor, oitavas e altura das cordas para contrabaixo.</div>
-        <div class="card-price-row" style="flex-direction:column; align-items:flex-start; gap:6px; margin-top:auto;">
+        <div class="card-price-row" style="flex-direction:column; align-items:flex-start; gap:6px">
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">4 cordas</span><span class="price-pill">R$ 175,00</span></div>
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">5 cordas</span><span class="price-pill">R$ 195,00</span></div>
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">6 cordas</span><span class="price-pill">R$ 220,00</span></div>
@@ -581,7 +725,7 @@
       <div class="card-body">
         <div class="card-name">Regulagem Completa</div>
         <div class="card-desc">Setup completo com nivelamento, revisão elétrica e hidratação da escala.</div>
-        <div class="card-price-row" style="flex-direction:column; align-items:flex-start; gap:6px; margin-top:auto;">
+        <div class="card-price-row" style="flex-direction:column; align-items:flex-start; gap:6px">
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">4 cordas</span><span class="price-pill">R$ 290,00</span></div>
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">5 cordas</span><span class="price-pill">R$ 310,00</span></div>
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">6 cordas</span><span class="price-pill">R$ 335,00</span></div>
@@ -610,7 +754,7 @@
       <div class="card-body">
         <div class="card-name">Violão — Regulagem Básica</div>
         <div class="card-desc">Ajuste de tensor, oitavas e altura das cordas.</div>
-        <div class="card-price-row" style="flex-direction:column; align-items:flex-start; gap:6px; margin-top:auto;">
+        <div class="card-price-row" style="flex-direction:column; align-items:flex-start; gap:6px">
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">Acústico</span><span class="price-pill">R$ 115,00</span></div>
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">Elétrico</span><span class="price-pill">R$ 150,00</span></div>
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">12 cordas</span><span class="price-pill">R$ 175,00</span></div>
@@ -622,7 +766,7 @@
       <div class="card-body">
         <div class="card-name">Violão — Regulagem Completa</div>
         <div class="card-desc">Setup completo com nivelamento e hidratação da escala.</div>
-        <div class="card-price-row" style="flex-direction:column; align-items:flex-start; gap:6px; margin-top:auto;">
+        <div class="card-price-row" style="flex-direction:column; align-items:flex-start; gap:6px">
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">Acústico</span><span class="price-pill">R$ 230,00</span></div>
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">Elétrico</span><span class="price-pill">R$ 265,00</span></div>
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">12 cordas</span><span class="price-pill">R$ 290,00</span></div>
@@ -634,7 +778,7 @@
       <div class="card-body">
         <div class="card-name">Viola — Regulagem</div>
         <div class="card-desc">Regulagem básica ou completa para viola caipira.</div>
-        <div class="card-price-row" style="flex-direction:column; align-items:flex-start; gap:6px; margin-top:auto;">
+        <div class="card-price-row" style="flex-direction:column; align-items:flex-start; gap:6px">
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">Básica</span><span class="price-pill">R$ 150,00</span></div>
           <div style="display:flex;justify-content:space-between;width:100%"><span class="price-label">Completa</span><span class="price-pill">R$ 265,00</span></div>
         </div>
@@ -670,7 +814,7 @@
 
 <hr class="section-sep">
 
-<!-- SERVIÇOS INDIVIDUAIS GUITARRA & CONTRABAIXO — MELHORIA: agrupado por categoria -->
+<!-- SERVIÇOS INDIVIDUAIS GUITARRA -->
 <div class="section">
   <div class="section-header">
     <div class="section-icon">🔧</div>
@@ -681,51 +825,29 @@
       </div>
     </div>
   </div>
-
-  <div class="price-group">
-    <div class="price-group-label">Mecânica & Trastes</div>
-    <div class="price-list">
-      <div class="price-item"><span class="price-item-name">Polimento de trastes</span><span class="price-item-value">R$ 40,00</span></div>
-      <div class="price-item"><span class="price-item-name">Retífica e nivelamento de trastes</span><span class="price-item-value">R$ 230,00</span></div>
-      <div class="price-item"><span class="price-item-name">Troca de trastes</span><span class="price-item-value">R$ 300,00</span></div>
-      <div class="price-item"><span class="price-item-name">Troca da pestana</span><span class="price-item-value">R$ 60,00</span></div>
-      <div class="price-item"><span class="price-item-name">Troca de tarraxas</span><span class="price-item-value">R$ 35,00</span></div>
-      <div class="price-item"><span class="price-item-name">Colagem de cavalete</span><span class="price-item-value">R$ 175,00</span></div>
-    </div>
-  </div>
-
-  <div class="price-group">
-    <div class="price-group-label">Tensor & Ajustes</div>
-    <div class="price-list">
-      <div class="price-item"><span class="price-item-name">Ajuste de oitavas</span><span class="price-item-value">R$ 60,00</span></div>
-      <div class="price-item"><span class="price-item-name">Troca de tensor (remoção traseira)</span><span class="price-item-value">R$ 310,00</span></div>
-      <div class="price-item"><span class="price-item-name">Troca de tensor (remoção sob escala)</span><span class="price-item-value">R$ 345,00</span></div>
-    </div>
-  </div>
-
-  <div class="price-group">
-    <div class="price-group-label">Limpeza & Conservação</div>
-    <div class="price-list">
-      <div class="price-item"><span class="price-item-name">Limpeza e hidratação da escala</span><span class="price-item-value">R$ 100,00</span></div>
-    </div>
-  </div>
-
-  <div class="price-group">
-    <div class="price-group-label">Elétrica</div>
-    <div class="price-list">
-      <div class="price-item"><span class="price-item-name">Soldagem de componentes elétricos</span><span class="price-item-value">R$ 45,00</span></div>
-      <div class="price-item"><span class="price-item-name">Substituição de potenciômetros (cada)</span><span class="price-item-value">R$ 20,00</span></div>
-      <div class="price-item"><span class="price-item-name">Troca de captadores</span><span class="price-item-value">R$ 195,00</span></div>
-      <div class="price-item"><span class="price-item-name">Blindagem</span><span class="price-item-value">R$ 290,00</span></div>
-      <div class="price-item"><span class="price-item-name">Troca de circuito elétrico (2 pots.)</span><span class="price-item-value">R$ 175,00</span></div>
-      <div class="price-item"><span class="price-item-name">Troca de circuito elétrico (3 pots.)</span><span class="price-item-value">R$ 230,00</span></div>
-    </div>
+  <div class="price-list">
+    <div class="price-item"><span class="price-item-name">Polimento de trastes</span><span class="price-item-value">R$ 40,00</span></div>
+    <div class="price-item"><span class="price-item-name">Limpeza e hidratação da escala</span><span class="price-item-value">R$ 100,00</span></div>
+    <div class="price-item"><span class="price-item-name">Ajuste de oitavas</span><span class="price-item-value">R$ 60,00</span></div>
+    <div class="price-item"><span class="price-item-name">Retífica e nivelamento de trastes</span><span class="price-item-value">R$ 230,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca de trastes</span><span class="price-item-value">R$ 300,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca de tensor (remoção traseira)</span><span class="price-item-value">R$ 310,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca de tensor (remoção sob escala)</span><span class="price-item-value">R$ 345,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca da pestana</span><span class="price-item-value">R$ 60,00</span></div>
+    <div class="price-item"><span class="price-item-name">Soldagem de componentes elétricos</span><span class="price-item-value">R$ 45,00</span></div>
+    <div class="price-item"><span class="price-item-name">Substituição de potenciômetros (cada)</span><span class="price-item-value">R$ 20,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca de captadores</span><span class="price-item-value">R$ 195,00</span></div>
+    <div class="price-item"><span class="price-item-name">Blindagem</span><span class="price-item-value">R$ 290,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca de circuito elétrico (2 pots.)</span><span class="price-item-value">R$ 175,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca de circuito elétrico (3 pots.)</span><span class="price-item-value">R$ 230,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca de tarraxas</span><span class="price-item-value">R$ 35,00</span></div>
+    <div class="price-item"><span class="price-item-name">Colagem de cavalete</span><span class="price-item-value">R$ 175,00</span></div>
   </div>
 </div>
 
 <hr class="section-sep">
 
-<!-- SERVIÇOS INDIVIDUAIS VIOLÃO — MELHORIA: agrupado por categoria -->
+<!-- SERVIÇOS INDIVIDUAIS VIOLÃO -->
 <div class="section">
   <div class="section-header">
     <div class="section-icon">🎻</div>
@@ -736,38 +858,22 @@
       </div>
     </div>
   </div>
-
-  <div class="price-group">
-    <div class="price-group-label">Mecânica & Trastes</div>
-    <div class="price-list">
-      <div class="price-item"><span class="price-item-name">Polimento de trastes</span><span class="price-item-value">R$ 20,00</span></div>
-      <div class="price-item"><span class="price-item-name">Retífica e alinhamento de trastes</span><span class="price-item-value">R$ 400,00</span></div>
-      <div class="price-item"><span class="price-item-name">Troca de trastes</span><span class="price-item-value">R$ 400,00</span></div>
-      <div class="price-item"><span class="price-item-name">Troca de rastilho</span><span class="price-item-value">R$ 45,00</span></div>
-      <div class="price-item"><span class="price-item-name">Troca da pestana</span><span class="price-item-value">R$ 40,00</span></div>
-      <div class="price-item"><span class="price-item-name">Troca de tarraxas blindadas</span><span class="price-item-value">R$ 60,00</span></div>
-      <div class="price-item"><span class="price-item-name">Troca de tarraxas comuns</span><span class="price-item-value">R$ 35,00</span></div>
-    </div>
-  </div>
-
-  <div class="price-group">
-    <div class="price-group-label">Ajustes</div>
-    <div class="price-list">
-      <div class="price-item"><span class="price-item-name">Ajuste da altura das cordas</span><span class="price-item-value">R$ 40,00</span></div>
-    </div>
-  </div>
-
-  <div class="price-group">
-    <div class="price-group-label">Limpeza & Conservação</div>
-    <div class="price-list">
-      <div class="price-item"><span class="price-item-name">Limpeza e hidratação da escala</span><span class="price-item-value">R$ 35,00</span></div>
-    </div>
+  <div class="price-list">
+    <div class="price-item"><span class="price-item-name">Polimento de trastes</span><span class="price-item-value">R$ 20,00</span></div>
+    <div class="price-item"><span class="price-item-name">Limpeza e hidratação da escala</span><span class="price-item-value">R$ 35,00</span></div>
+    <div class="price-item"><span class="price-item-name">Retífica e alinhamento de trastes</span><span class="price-item-value">R$ 400,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca de trastes</span><span class="price-item-value">R$ 400,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca de tarraxas blindadas</span><span class="price-item-value">R$ 60,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca de tarraxas comuns</span><span class="price-item-value">R$ 35,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca de rastilho</span><span class="price-item-value">R$ 45,00</span></div>
+    <div class="price-item"><span class="price-item-name">Troca da pestana</span><span class="price-item-value">R$ 40,00</span></div>
+    <div class="price-item"><span class="price-item-name">Ajuste da altura das cordas</span><span class="price-item-value">R$ 40,00</span></div>
   </div>
 </div>
 
 <hr class="section-sep">
 
-<!-- COMPARATIVO DE SETUPS — MELHORIA: destaque premium -->
+<!-- O QUE ESTÁ INCLUSO -->
 <div class="section">
   <div class="section-header">
     <div class="section-icon">✅</div>
@@ -790,7 +896,6 @@
       </ul>
     </div>
     <div class="setup-card featured">
-      <div class="setup-popular-badge">⭐ Mais Escolhido</div>
       <div class="setup-badge">Setup Completo</div>
       <div class="setup-name">O Premium</div>
       <ul class="setup-features">
@@ -812,8 +917,8 @@
 
 <!-- INFORMAÇÕES IMPORTANTES -->
 <div class="info-banner" style="padding-top:48px">
-  <div class="info-section-label">
-    <p>ℹ️ Informações Importantes</p>
+  <div style="text-align:center;margin-bottom:24px">
+    <p style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:500">ℹ️ Informações Importantes</p>
   </div>
   <div class="info-inner">
     <div class="info-item">
@@ -835,9 +940,102 @@
   </div>
 </div>
 
+<hr class="section-sep">
+
+<!-- LOCALIZAÇÃO -->
+<div class="location-section">
+  <div class="section-header">
+    <div class="section-icon">📍</div>
+    <div>
+      <div class="section-title">
+        <small>Onde Estamos</small>
+        Localização
+      </div>
+    </div>
+  </div>
+
+  <div class="location-grid">
+    <!-- Mapa -->
+    <div class="location-map">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3602.8!2d-52.6172147!3d-27.0934081!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e4b18ec80a1fdf%3A0x9ac071cc28c472e9!2sHitexx%20Music!5e0!3m2!1spt-BR!2sbr!4v1"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Localização Hitexx Music">
+      </iframe>
+    </div>
+
+    <!-- Informações -->
+    <div class="location-info">
+
+      <div class="location-rating">
+        <span class="location-stars">★★★★★</span>
+        <div>
+          <div class="location-rating-num">4,9</div>
+          <div class="location-rating-label">61 avaliações no Google</div>
+        </div>
+      </div>
+
+      <div class="location-detail">
+        <div class="location-detail-icon">📍</div>
+        <div class="location-detail-content">
+          <div class="location-detail-label">Endereço</div>
+          <div class="location-detail-value">
+            Av. Getúlio Dorneles Vargas, 1298<br>
+            Centro — Chapecó, SC<br>
+            CEP 89801-002
+          </div>
+        </div>
+      </div>
+
+      <div class="location-detail">
+        <div class="location-detail-icon">🕐</div>
+        <div class="location-detail-content">
+          <div class="location-detail-label">Horário de Funcionamento</div>
+          <div class="location-detail-value">
+            <div class="hours-grid">
+              <div class="hours-row"><span class="day">Seg – Sex</span><span>9h – 18h30</span></div>
+              <div class="hours-row"><span class="day">Sábado</span><span>9h – 14h</span></div>
+              <div class="hours-row"><span class="day">Domingo</span><span class="closed">Fechado</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="location-detail">
+        <div class="location-detail-icon">📞</div>
+        <div class="location-detail-content">
+          <div class="location-detail-label">Telefone / WhatsApp</div>
+          <div class="location-detail-value">
+            <a href="https://wa.me/5549991647761">(49) 99164-7761</a>
+          </div>
+        </div>
+      </div>
+
+      <a href="https://maps.google.com/?q=Hitexx+Music+Chapecó+SC" target="_blank" rel="noopener" class="btn-directions">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+        </svg>
+        Como Chegar
+      </a>
+
+    </div>
+  </div>
+</div>
+
+
 <footer>
   HITEXX — Luthieria & Regulagens &nbsp;·&nbsp; Todos os preços em Reais (BRL)
 </footer>
+
+<!-- FLOATING WHATSAPP BUTTON -->
+<a href="https://wa.me/5549991647761?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.828L.057 23.428a.5.5 0 00.609.61l5.7-1.49A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.8 9.8 0 01-4.99-1.366l-.357-.213-3.706.97.987-3.607-.233-.37A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
+  </svg>
+</a>
 
 </body>
 </html>
