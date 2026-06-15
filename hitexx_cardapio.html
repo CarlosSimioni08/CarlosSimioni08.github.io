@@ -41,6 +41,15 @@
     background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,164,74,0.12) 0%, transparent 70%);
     pointer-events: none;
   }
+  .hero-logo {
+  width: 220px;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto 24px;
+  display: block;
+  opacity: 0.95;
+}
+
   .hero-eyebrow {
     font-family: 'DM Sans', sans-serif;
     font-size: 11px;
@@ -177,6 +186,42 @@
     color: var(--muted);
     text-transform: uppercase;
     letter-spacing: 1px;
+  }
+
+  /* CARD STEPS (kit D'Addario) */
+  .card-steps {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .card-steps li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .card-steps li .step-num {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--gold-dim);
+    border: 1px solid rgba(201,164,74,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--gold);
+    margin-top: 1px;
+  }
+  .card-steps li strong {
+    color: var(--text);
+    font-weight: 500;
   }
 
   /* PRICE TABLE (list items) */
@@ -317,6 +362,7 @@
 
 <!-- HERO -->
 <div class="hero">
+  <img class="hero-logo" src="hitexx-logo.png" alt="Hitexx Logo">
   <p class="hero-eyebrow">Luthieria & Regulagens</p>
   <h1>Hitexx<br><span>Serviços</span></h1>
   <p class="hero-sub">Cuidado profissional para seu instrumento. Qualidade e garantia em cada regulagem.</p>
@@ -335,6 +381,8 @@
     </div>
   </div>
   <div class="card-grid">
+
+    <!-- Card 1: Limpeza Completa -->
     <div class="service-card">
       <img class="card-img" src="limpeza.jpg" alt="Escala de guitarra sendo hidratada">
       <div class="card-body">
@@ -346,6 +394,27 @@
         </div>
       </div>
     </div>
+
+    <!-- Card 2: Kit D'Addario -->
+    <div class="service-card">
+      <img class="card-img" src="daddario.png" alt="Kit completo de limpeza D'Addario">
+      <div class="card-body">
+        <div class="card-name">Kit Completo D'Addario</div>
+        <div class="card-desc">Mantenha seu instrumento sempre limpo, protegido e com aparência de novo.</div>
+        <ul class="card-steps">
+          <li><span class="step-num">1</span><span><strong>Spray Cleaner</strong> — Remove sujeiras e marcas de dedo do corpo.</span></li>
+          <li><span class="step-num">2</span><span><strong>Guitar Wax</strong> — Protege e renova o brilho da pintura.</span></li>
+          <li><span class="step-num">3</span><span><strong>Restore Detailer</strong> — Realça o brilho e remove marcas superficiais.</span></li>
+          <li><span class="step-num">4</span><span><strong>Hydrate Conditioner</strong> — Hidrata a escala, evita ressecamento.</span></li>
+          <li><span class="step-num">5</span><span><strong>XLR8 String Cleaner</strong> — Limpa e lubrifica as cordas.</span></li>
+        </ul>
+        <div class="card-price-row">
+          <span class="price-label">Guitarra · Violão · Baixo</span>
+          <span class="price-pill">Sob consulta</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
